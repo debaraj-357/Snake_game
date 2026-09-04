@@ -6,19 +6,27 @@ class Board:
         # Light/ Medium Yellow-Brown
         self.wall_color = "\033[38;2;196;150;100m"
         self.reset_color =  "\033[0m"\
+
+    def is_wall(self,x,y):
+        return (
+            x==0
+            or x==self.width-1
+            or y==0
+            or y== self.height-1
+        )
+    def is_inside_playable_area(self,x,y):
+        return (
+            1<=x<self.width-1
+            and 1<=y<self.height-1
+        )
         
     def draw(self):
-        for row in range(self.height):
+        for y in range(self.height):
             line = ""
 
-            for column in range(self.width):
-                if (
-                    row ==0
-                    or row == self.height-1
-                    or column == 0
-                    or column == self.width-1
-                ):
-                    line += self.wall_color + "██" + self.reset_color
+            for x in range(self.width):
+                if self.is_wall(x,y):
+                    line +=self.wall_color + "██" + self.reset_color
                 else:
                     line += "  "
             print(line)
