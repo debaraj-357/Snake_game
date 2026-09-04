@@ -5,6 +5,12 @@ class Board:
 
         # Light/ Medium Yellow-Brown
         self.wall_color = "\033[38;2;196;150;100m"
+
+        #snake colors
+        self.head_color="\033[31m"
+        self.body_color = "\033[32m"
+
+
         self.reset_color =  "\033[0m"\
 
     def is_wall(self,x,y):
@@ -20,13 +26,20 @@ class Board:
             and 1<=y<self.height-1
         )
         
-    def draw(self):
+    def draw(self, snake=None):
         for y in range(self.height):
             line = ""
 
             for x in range(self.width):
                 if self.is_wall(x,y):
                     line +=self.wall_color + "██" + self.reset_color
+
+                elif snake and (x, y) == snake.body[0]:
+                    line += self.head_color + "🔴" + self.reset_color
+
+                elif snake and (x, y) in snake.body:
+                    line += self.body_color + "🟢" + self.reset_color
+
                 else:
                     line += "  "
             print(line)
