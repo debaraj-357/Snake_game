@@ -6,6 +6,20 @@ class Snake:
             (start_x-2,start_y)
         ]
         self.direction="RIGHT"
+
+
+    def change_direction(self,new_direction):
+        if self.direction=="RIGHT" and new_direction=="LEFT":
+            return
+        if self.direction=="LEFT" and new_direction=="RIGHT":
+            return
+        if self.direction=="Up" and new_direction=="DOWN":
+            return
+        if self.direction=="DOWN" and new_direction=="UP":
+            return
+
+        self.direction=new_direction
+        
     def move(self):
         head_x, head_y = self.body[0]
 
