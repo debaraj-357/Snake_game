@@ -9,8 +9,7 @@ class Board:
         #snake colors
         self.head_color="\033[31m"
         self.body_color = "\033[32m"
-
-
+        self.food_color="\033[33m"
         self.reset_color =  "\033[0m"\
 
     def is_wall(self,x,y):
@@ -26,13 +25,16 @@ class Board:
             and 1<=y<self.height-1
         )
         
-    def draw(self, snake=None):
+    def draw(self, snake=None, food=None):
         for y in range(self.height):
             line = ""
 
             for x in range(self.width):
                 if self.is_wall(x,y):
                     line +=self.wall_color + "██" + self.reset_color
+
+                elif food and (x,y) == food.position:
+                    line+=self.food_color +  "🟨" + self.reset_color
 
                 elif snake and (x, y) == snake.body[0]:
                     line += self.head_color + "🔴" + self.reset_color

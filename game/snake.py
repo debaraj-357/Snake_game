@@ -33,3 +33,6 @@ class Snake:
             new_head=(head_x+1,head_y)
         self.body.insert(0,new_head)
         self.body.pop()
+
+    def grow(self):
+        self.body.append(self.body[-1])

@@ -2,12 +2,16 @@ import os
 import time
 import msvcrt
 
+from game.food import Food
 from game.board import Board
 from game.snake import Snake
 
 def main():
     board= Board()
     snake= Snake()
+
+    food=Food(board)
+    food.spawn(snake)
 
     game_running=True
 
@@ -47,7 +51,11 @@ def main():
             print("======== GAME OVER ========")
             game_running=False
             continue
-        board.draw(snake)
+
+        if snake.body[0]==food.position:
+            snake.grow()
+            food.spawn(snake)
+        board.draw(snake, food)
 
         time.sleep(0.5)
 
