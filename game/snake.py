@@ -13,7 +13,7 @@ class Snake:
             return
         if self.direction=="LEFT" and new_direction=="RIGHT":
             return
-        if self.direction=="Up" and new_direction=="DOWN":
+        if self.direction=="UP" and new_direction=="DOWN":
             return
         if self.direction=="DOWN" and new_direction=="UP":
             return

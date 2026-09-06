@@ -52,7 +52,10 @@ def main():
             game_running=False
             continue
 
-        if snake.body[0]==food.position:
+        if snake.body[0]==food.position or (
+            food.is_big
+            and snake.body[0]==(food.position[0]+1, food.position[1])
+        ):    
             snake.grow()
             food.spawn(snake)
         board.draw(snake, food)

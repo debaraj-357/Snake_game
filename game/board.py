@@ -33,7 +33,14 @@ class Board:
                 if self.is_wall(x,y):
                     line +=self.wall_color + "██" + self.reset_color
 
-                elif food and (x,y) == food.position:
+                elif food and (
+                    (x,y) == food.position
+                    or(
+                        food.is_big
+                        and(x,y)==(food.position[0]+1,food.position[1])
+                    )
+                ):
+                    
                     line+=self.food_color +  "🟨" + self.reset_color
 
                 elif snake and (x, y) == snake.body[0]:
