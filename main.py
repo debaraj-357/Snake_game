@@ -13,6 +13,9 @@ def main():
     food=Food(board)
     food.spawn(snake)
 
+    score=0
+    high_score=0
+
     game_running=True
 
     while game_running:
@@ -46,9 +49,10 @@ def main():
         head = snake.body[0]
 
         if head in snake.body[1:]:
-            print("\033[2j\033[H", end="")
+            print("\033[2J\033[H", end="")
             print()
             print("======== GAME OVER ========")
+            print("snake hit itself")
             game_running=False
             continue
 
@@ -57,7 +61,18 @@ def main():
             and snake.body[0]==(food.position[0]+1, food.position[1])
         ):    
             snake.grow()
+
+            if food.is_big:
+                score+=10
+            else:
+                score+=5
+
+            if score > high_score:
+                high_score=score
+
             food.spawn(snake)
+
+        print(f"score: {score}  High Score: {high_score}")
         board.draw(snake, food)
 
         time.sleep(0.5)
