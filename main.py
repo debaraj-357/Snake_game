@@ -28,6 +28,17 @@ def main():
 
         
         snake.move()
+
+        head_x, head_y = snake.body[0]
+
+        if board.is_wall(head_x,head_y):
+            print("\033[2J\033[H", end="")
+            print()
+            print("======== GAME OVER ========")
+            print("Snake hit the wall")
+            game_running=False
+            continue
+
         board.draw(snake)
 
         time.sleep(0.5)
