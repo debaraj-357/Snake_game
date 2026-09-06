@@ -39,6 +39,14 @@ def main():
             game_running=False
             continue
 
+        head = snake.body[0]
+
+        if head in snake.body[1:]:
+            print("\033[2j\033[H", end="")
+            print()
+            print("======== GAME OVER ========")
+            game_running=False
+            continue
         board.draw(snake)
 
         time.sleep(0.5)
