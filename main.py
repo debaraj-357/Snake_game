@@ -15,6 +15,18 @@ def main():
 
     score=0
     high_score=0
+    starting_speed =2
+    speed=starting_speed
+
+    speed_delay={
+        2:0.5,
+        3:0.45,
+        4:0.4,
+        5:0.35,
+        6:0.3,
+        7:0.25,
+        8:0.2
+    }
 
     game_running=True
 
@@ -33,7 +45,8 @@ def main():
             elif key =="d":
                 snake.change_direction("RIGHT")
 
-        
+        speed= min(starting_speed+(score//50),8)
+
         snake.move()
 
         head_x, head_y = snake.body[0]
@@ -72,10 +85,10 @@ def main():
 
             food.spawn(snake)
 
-        print(f"score: {score}  High Score: {high_score}")
+        print(f"score: {score}  High Score: {high_score}   speed:{speed}")
         board.draw(snake, food)
 
-        time.sleep(0.5)
+        time.sleep(speed_delay[speed])
 
 
 if __name__=="__main__":
