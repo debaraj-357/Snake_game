@@ -28,6 +28,7 @@ def main():
         8:0.2
     }
 
+    game_state = "PLAYING"
     game_running=True
 
     while game_running:
@@ -36,18 +37,27 @@ def main():
         if msvcrt.kbhit():
             key=msvcrt.getch().decode().lower()
 
-            if key=="w":
-                snake.change_direction("UP")
-            elif key=="s":
-                snake.change_direction("DOWN")
-            elif key =="a":
-                snake.change_direction("LEFT")
-            elif key =="d":
-                snake.change_direction("RIGHT")
+            if key=="p" or key==" ":
+                if game_state=="PLAYING":
+                    game_state="PAUSED"
+                else:
+                    game_state="PLAYING"
+            elif game_state=="PLAYING":
+                if key=="w":
+                    snake.change_direction("UP")
+                elif key=="s":
+                    snake.change_direction("DOWN")
+                elif key =="a":
+                    snake.change_direction("LEFT")
+                elif key =="d":
+                    snake.change_direction("RIGHT")
+            
 
         speed= min(starting_speed+(score//50),8)
 
-        snake.move()
+        if game_state=="PLAYING":
+             snake.move()
+       
 
         head_x, head_y = snake.body[0]
 
@@ -85,8 +95,20 @@ def main():
 
             food.spawn(snake)
 
-        print(f"score: {score}  High Score: {high_score}   speed:{speed}")
-        board.draw(snake, food)
+        if game_state =="PAUSED":
+            print(f"score: {score}  High Score: {high_score}   speed:{speed}")
+            board.draw(snake, food)
+
+            print()
+            print("========PAUSED========")
+            print("Press P or SPACE to Resume")
+        else:
+            print(f"score: {score}  High Score: {high_score}   speed:{speed}")
+            board.draw(snake, food)    
+
+            print(" "*30)
+            print(" "*30) 
+            print(" "*30)  
 
         time.sleep(speed_delay[speed])
 
