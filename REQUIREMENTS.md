@@ -195,14 +195,16 @@ THe game will have multiple spped levels.
 
 Available spped levels:
 - 2
+- 3
 - 4
+- 5
 - 6
+- 7
 - 8
-- 10
 
 Speed 2 will be the lowest spped.
 
-Speed 10 will be the maximum speed.
+Speed 8 will be the maximum speed.
 
 ### 8.1 Starting Spped.
 
@@ -217,9 +219,9 @@ The speed level will increase by 1 at every 50 point milestone.
 - Score 50+ -> Starting speed + 1
 - Score 100+ -> Starting speed + 2
 - Score 150+ -> Starting speed + 3
-- Continue until maximul speed 10.
+- Continue until maximul speed 8.
 
-The speed must never exceed level 10.
+The speed must never exceed level 8.
 
 ## 9. Game Controles
 

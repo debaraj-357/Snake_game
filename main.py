@@ -1,4 +1,3 @@
-import os
 import time
 import msvcrt
 
@@ -39,10 +38,10 @@ def play_game(starting_speed, high_score):
     
         print("\033[2J\033[H", end="")
     
-        board= Board()
-        snake= Snake()
+        board = Board()
+        snake = Snake()
     
-        food=Food(board)
+        food = Food(board)
         food.spawn(snake)
     
         score=0
@@ -59,14 +58,14 @@ def play_game(starting_speed, high_score):
         }
     
         game_state = "PLAYING"
-        game_running=True
+        
     
         # ===========================
         # GAME LOOP
         # ===========================
     
-        while game_running:
-            print("\033[H", end="")
+        while True:
+            print("\033[H", end = "")
     
             # ===========================
             # KEYBOARD INPUT
@@ -75,20 +74,20 @@ def play_game(starting_speed, high_score):
             if msvcrt.kbhit():
                 key=msvcrt.getch().decode().lower()
     
-                if key=="p" or key==" ":
-                    if game_state=="PLAYING":
-                        game_state="PAUSED"
+                if key == "p" or key == " ":
+                    if game_state == "PLAYING":
+                        game_state = "PAUSED"
                     else:
-                        game_state="PLAYING"
+                        game_state = "PLAYING"
     
-                elif game_state=="PLAYING":
-                    if key=="w":
+                elif game_state == "PLAYING":
+                    if key == "w":
                         snake.change_direction("UP")
-                    elif key=="s":
+                    elif key == "s":
                         snake.change_direction("DOWN")
-                    elif key =="a":
+                    elif key == "a":
                         snake.change_direction("LEFT")
-                    elif key =="d":
+                    elif key == "d":
                         snake.change_direction("RIGHT")
                 
     
@@ -102,7 +101,7 @@ def play_game(starting_speed, high_score):
             # MOVEMENT
             # ===========================
     
-            if game_state=="PLAYING":
+            if game_state == "PLAYING":
                  snake.move()
            
             # ===========================
@@ -144,19 +143,19 @@ def play_game(starting_speed, high_score):
             # FOOD
             #===========================
     
-            if snake.body[0]==food.position or (
+            if snake.body[0] == food.position or (
                 food.is_big
-                and snake.body[0]==(food.position[0]+1, food.position[1])
+                and snake.body[0] == (food.position[0]+1, food.position[1])
             ):    
                 snake.grow()
     
                 if food.is_big:
-                    score+=10
+                    score += 10
                 else:
-                    score+=5
+                    score += 5
     
                 if score > high_score:
-                    high_score=score
+                    high_score = score
     
                 food.spawn(snake)
     
@@ -164,7 +163,7 @@ def play_game(starting_speed, high_score):
             # DISPLAY
             # ===========================
     
-            if game_state =="PAUSED":
+            if game_state == "PAUSED":
                 print(f"score: {score}  High Score: {high_score}   speed:{speed}")
                 board.draw(snake, food)
     
@@ -186,10 +185,10 @@ def play_game(starting_speed, high_score):
 
 def main():
 
-    menu =Menu()
+    menu = Menu()
 
-    starting_speed =2
-    high_score=0
+    starting_speed = 2
+    high_score = 0
 
 
     # ===========================
@@ -203,26 +202,26 @@ def main():
         while True:
                 choice = menu.show()
                 
-                if choice =="1":
+                if choice == "1":
                     print("Starting Game.....")
                     time.sleep(0.5)
                     break
                 
-                elif choice=="2":
+                elif choice == "2":
                     starting_speed=menu.select_speed()
                     print(f"Speed {starting_speed} selected")
                     time.sleep(0.5)
                 
-                elif choice== "3":
+                elif choice == "3":
                     print()
                     print("========HIGH SCORE ========")
                     print()
-                    print(f"Hogh Score: {high_score}")
+                    print(f"High Score: {high_score}")
                     print()
                     input("Press Enter to return to Main Menu")
                 
                     
-                elif choice =="4":
+                elif choice == "4":
 
                     print("\033[2J\033[H", end="")
 
@@ -253,7 +252,7 @@ def main():
 
                     print("COLLISION")
                     print()
-                    print("Hit Wall -> Game OVer")
+                    print("Hit Wall -> Game Over")
                     print("Hit Body -> Game Over")
                     print()
 
@@ -266,7 +265,7 @@ def main():
                     print("-------------------------------------")
                     input("Press enter to return to Main Menu")
                                         
-                elif choice== "5":
+                elif choice == "5":
                     print("Exiting Game...")
                     return
         
@@ -275,17 +274,17 @@ def main():
             # ===========================
         
         while True:
-            result, high_score= play_game(
+            result, high_score = play_game(
             starting_speed,
             high_score
             )
         
             if result == "RESTART":
                 continue
-            elif result =="MENU":
+            elif result == "MENU":
                 break
 
 
 
-if __name__=="__main__":
+if __name__ == "__main__":
     main()
