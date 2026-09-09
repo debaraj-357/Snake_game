@@ -223,9 +223,49 @@ def main():
                 
                     
                 elif choice =="4":
-                    print("How to play feature comming soon....")
-                    time.sleep(1)
-        
+
+                    print("\033[2J\033[H", end="")
+
+                    print("===========================")
+                    print("        HOW TO PLAY        ")
+                    print("===========================")
+
+                    print("CONTROLS")
+                    print()
+                    print("W    -> Move UP")
+                    print("S    -> Move Down")
+                    print("A    -> Move Left")
+                    print("D    -> Move Right")
+                    print()
+
+                    print("FOOD")
+                    print()
+                    print("Normal Food -> +5 points")
+                    print("Big Food -> +10 points")
+                    print()
+
+                    print("SPEED")
+                    print()
+                    print("Speed automatically increases")
+                    print("by 1 every 50 points.")
+                    print("Maximum speed is 8.")
+                    print()
+
+                    print("COLLISION")
+                    print()
+                    print("Hit Wall -> Game OVer")
+                    print("Hit Body -> Game Over")
+                    print()
+
+                    print("RULE")
+                    print()
+                    print("You cannot immediately reverse")
+                    print("the snake's direction")
+                    print()
+
+                    print("-------------------------------------")
+                    input("Press enter to return to Main Menu")
+                                        
                 elif choice== "5":
                     print("Exiting Game...")
                     return
